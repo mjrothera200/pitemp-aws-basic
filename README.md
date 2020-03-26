@@ -111,8 +111,9 @@ python3 iot-temp.py
 
 ## Step 9:  Monitor Results in AWS
 
-1.  Navigate to your device under Devices.  Verify that the device shows "Connected"
-2.  Navigate to "Recent events" to watch the live JSON IoT data arrive
+1.  Navigate to "Test" on the panel at the left.
+2.  Click on "Subscribe to a Topic".  Then type "environmentals" for the name of the topic (you will see this in the iot-temp.py python program)
+3.  You should see JSON messages starting to flow.
 
 For more information:
 https://docs.aws.amazon.com/iot/latest/developerguide/view-mqtt-messages.html
