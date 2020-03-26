@@ -83,6 +83,8 @@ https://aws.amazon.com/
 4.  Add two policy statements:
    a.  Name: iot:Connect, Resource ARN: *, Click the Allow CheckBox
    b.  Name: iot:Connect, Resource ARN: *, Click the Allow CheckBox
+   
+   
 For more information:
 https://docs.aws.amazon.com/iot/latest/developerguide/create-iot-policy.html
 
@@ -92,6 +94,7 @@ https://docs.aws.amazon.com/iot/latest/developerguide/create-iot-policy.html
 2.  Click on Certificates, and then find the certificate you created as above
 3.  Click the "..." on the certificate and then "Attach Policy"
 4.  Select the "pitemp_policy" and click "Attach"
+
 
 For more information:
 https://docs.aws.amazon.com/iot/latest/developerguide/attach-policy-to-certificate.html
@@ -114,6 +117,7 @@ python3 iot-temp.py
 1.  Navigate to "Test" on the panel at the left.
 2.  Click on "Subscribe to a Topic".  Then type "environmentals" for the name of the topic (you will see this in the iot-temp.py python program)
 3.  You should see JSON messages starting to flow.
+
 
 For more information:
 https://docs.aws.amazon.com/iot/latest/developerguide/view-mqtt-messages.html
