@@ -100,6 +100,8 @@ https://docs.aws.amazon.com/iot/latest/developerguide/attach-policy-to-certifica
 
 1.  Edit the "iot-temp.py" and make sure the directory path points to the location of the certificates.  Make sure they are all absolute paths
 
+2.  Set the aws-iot endpoint to match the region you are running in
+
 ## Step 8:  Run the Program
  
 
@@ -111,6 +113,9 @@ python3 iot-temp.py
 
 1.  Navigate to your device under Devices.  Verify that the device shows "Connected"
 2.  Navigate to "Recent events" to watch the live JSON IoT data arrive
+
+For more information:
+https://docs.aws.amazon.com/iot/latest/developerguide/view-mqtt-messages.html
 
 
 Enjoy!
