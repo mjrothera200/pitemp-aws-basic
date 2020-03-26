@@ -60,7 +60,7 @@ https://aws.amazon.com/
 
 ## Step 4:  Create a Thing called "pitemp"
 
-1.  Navigate to Manage click on the button "Register a Thing", and then "Create a Single Thing".
+1.  Navigate to Manage on the left hand panel, and then click on the button "Register a Thing", and then "Create a Single Thing".
 2.  In the name field type "pitemp1".  This will be the unique name of your device.
 3.  In the "Apply a Type" field, hit the button to create a type and then:
     a.  for the type name, select "pitemp"
@@ -72,23 +72,50 @@ https://aws.amazon.com/
    a.  The three certificates: The Thing Certificate, Public, and Private Key
    b.  The Root CA for AWS. (Amazone Root 2048 CA will work fine).
 8.  Put all of these certificates into the directory of this program wherever you have it on your Raspberry PI
-   
+9.  Make sure you hit "Activate" on the page to Activate the certificate
+10.  Finish up and "Create a Thing".  Ignore policy for now - that is the next step.
 
-## Step 5:  Customize your Configuration Values in the Python Script
+## Step 5:  Create an IoT Policy
+
+1.  On the left hand panel, click on "Secure"
+2.  Click on Policies, and then "Create a Policy"
+3.  In the name, type called "pitemp_policy"
+4.  Add two policy statements:
+   a.  Name: iot:Connect, Resource ARN: *, Click the Allow CheckBox
+   b.  Name: iot:Connect, Resource ARN: *, Click the Allow CheckBox
+For more information:
+https://docs.aws.amazon.com/iot/latest/developerguide/create-iot-policy.html
+
+## Step 6:  Attach the Policy to a Certificate
+
+1.  On the left hand panel, click on "Secure"
+2.  Click on Certificates, and then find the certificate you created as above
+3.  Click the "..." on the certificate and then "Attach Policy"
+4.  Select the "pitemp_policy" and click "Attach"
+
+For more information:
+https://docs.aws.amazon.com/iot/latest/developerguide/attach-policy-to-certificate.html
+
+## Step 7:  Customize your Configuration Values in the Python Script
 
 1.  Edit the "iot-temp.py" and make sure the directory path points to the location of the certificates.  Make sure they are all absolute paths
 
-## Step 6:  Run the Program
+2.  Set the aws-iot endpoint to match the region you are running in
+
+## Step 8:  Run the Program
  
 
 ```console
 python3 iot-temp.py
 ```
 
-## Step 7:  Monitor Results in AWS
+## Step 9:  Monitor Results in AWS
 
 1.  Navigate to your device under Devices.  Verify that the device shows "Connected"
 2.  Navigate to "Recent events" to watch the live JSON IoT data arrive
+
+For more information:
+https://docs.aws.amazon.com/iot/latest/developerguide/view-mqtt-messages.html
 
 
 Enjoy!
