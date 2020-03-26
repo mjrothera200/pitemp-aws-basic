@@ -51,55 +51,41 @@ Temperature: 64.9 F
 Humidity: 39.0 %
 ```
 
-## Step 3:  Sign up for IBM Cloud and Create an IoT Service
+## Step 3:  Sign up for AWS Cloud and Launch IoT Core
 
-1. Sign up for the IBM cloud from this link: 
-https://www.ibm.com/cloud
-2. After you go through the registration process, login with your IBM ID.
-3. Create an instance of the IoT service by clicking "Create Resource" and searchign for IoT
-4.  Select "Internet of Things Platform" and a pricing plan (Lite plan or Free works fine to get started)
-5.  Launch the Internet of Things platform dashboard.      
-**Important:  Take note of your Organization ID which is a 6 character identifier in the upper right hand corner above your name**
+1. Sign up for the AWS cloud from this link: 
+https://aws.amazon.com/
+2. After you go through the registration process, login with your Amazon ID.
+3. Launch the IoT Core service
 
-## Step 4:  Create a Device Type called "pitemp"
+## Step 4:  Create a Thing called "pitemp"
 
-1.  Navigate to Devices and "Create a Device Type".    
-**You can name it whatever you want, but the program here uses the device type called "pitemp"**
+1.  Navigate to Manage click on the button "Register a Thing", and then "Create a Single Thing".
+2.  In the name field type "pitemp1".  This will be the unique name of your device.
+3.  In the "Apply a Type" field, hit the button to create a type and then:
+    a.  for the type name, select "pitemp"
+    b.  put a description of it, like "my raspberry pi temperature"
+4.  Create a group in the next field - call it "mypitemps"
+5.  Hit Next to the move to the next page.
+6.  Create a set of certificates by hitting the button "Create Certificate"
+7.  Next, download the following:
+   a.  The three certificates: The Thing Certificate, Public, and Private Key
+   b.  The Root CA for AWS. (Amazone Root 2048 CA will work fine).
+8.  Put all of these certificates into the directory of this program wherever you have it on your Raspberry PI
+   
 
-## Step 5:  Create a new Device called "pi1"
+## Step 5:  Customize your Configuration Values in the Python Script
 
-1.  Create a Device Type called "pi1" which is of type "pitemp"
-**Again, you can name it whatever you want, but this program assumes the device identifier of "pi1"**
+1.  Edit the "iot-temp.py" and make sure the directory path points to the location of the certificates.  Make sure they are all absolute paths
 
-2.  As you walk through the work flow to create a device, it will ask you to generate a device token or type one.  It is generally safer and more secure to have the system automatically create one, but for this exercise just type "12345678".  This token is embedded in the program and is part of the authentication part of the process.  
-
-## Step 6:  Customize your Configuration Values in the Python Script
-
-1.  Edit the program and put it in your specific credentials.  
-    * The path to the cert. This must be an absolute path - where you are running this program on the PI
-    * Your organization:  The 6 character identification
-    * The device token if different than 12345678
-
-```python
-# device credentials
-ca_absolute_path = '/home/pi/dev/iot-temp/pitemp-wiot-basic/messaging.pem'
-iotidentifier = 'pi1'
-iotorg = 'cg3orm'
-iottype = 'pitemp'
-
-device_id        = 'use-token-auth'      # * set your device id (will be the MQTT client username)
-device_secret = '12345678'
-random_client_id = 'd:'+iotorg+':'+iottype+':'+iotidentifier      # * set a random client_id (max 23 char)
-```
-
-## Step 7:  Run the Program
+## Step 6:  Run the Program
  
 
 ```console
 python3 iot-temp.py
 ```
 
-## Step 8:  Monitor Results in Watson IoT
+## Step 7:  Monitor Results in AWS
 
 1.  Navigate to your device under Devices.  Verify that the device shows "Connected"
 2.  Navigate to "Recent events" to watch the live JSON IoT data arrive
